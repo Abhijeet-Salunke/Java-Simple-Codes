@@ -13,12 +13,17 @@ class Solution {
             min = Math.min(min, i);
         }
 
-        for (int i = min; i <= max; i++) {
-            if (boquetPossibleOrNot(bloomDay, i, m, k)) {
-                return i; 
+         int ans = -1;
+        while (min <= max) {
+            int mid = min + (max - min) / 2;
+            if (boquetPossibleOrNot(bloomDay, mid, m, k)) {
+                ans = mid;  
+                max = mid - 1; 
+            } else {
+                min = mid + 1; 
             }
         }
-        return -1;
+        return ans;
     }
 
     private static boolean boquetPossibleOrNot(int[] bloomDay, int day, int m, int k) {
